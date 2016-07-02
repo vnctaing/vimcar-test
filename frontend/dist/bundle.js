@@ -191,8 +191,22 @@
 	    React.createElement(
 	      'div',
 	      null,
-	      React.createElement('img', { src: '../../assets/vimcar-logo.svg' }),
-	      React.createElement('img', { src: '../../assets/cart.svg' })
+	      React.createElement('img', { src: '../../assets/vimcar-logo.svg', className: 'nav__brand' }),
+	      React.createElement(
+	        'div',
+	        { className: 'nav_cartContainer' },
+	        React.createElement(
+	          'div',
+	          { className: 'nav__cart' },
+	          React.createElement('img', { src: '../../assets/cart.svg' }),
+	          React.createElement(
+	            'span',
+	            { className: 'nav_cartItemNumber' },
+	            props.rootReducer.cart.length
+	          )
+	        ),
+	        React.createElement(_Cart2.default, null)
+	      )
 	    ),
 	    React.createElement(
 	      'div',
@@ -222,7 +236,6 @@
 	        )
 	      )
 	    ),
-	    React.createElement(_Cart2.default, null),
 	    items.map(function (i) {
 	      return React.createElement(_Item2.default, { key: i.id, item: i });
 	    })
@@ -21832,7 +21845,7 @@
 
 
 	// module
-	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n.nav {\n  list-style-type: none;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n  height: 30px;\n}\n.nav__item {\n  display: inline;\n  margin: 0 40px;\n  font-size: 18px;\n  padding-bottom: 5px;\n}\n.nav__item:hover {\n  border-bottom: 3px solid #79A4E6;\n}\n", ""]);
+	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n  position: absolute;\n  right: 0;\n  top: 36px;\n  z-index: 9999;\n  background: #fff;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  position: relative;\n}\n.nav {\n  list-style-type: none;\n  margin: 60px auto 100px;\n  display: flex;\n  justify-content: center;\n  height: 30px;\n}\n.nav__item {\n  display: inline;\n  margin: 0 40px;\n  font-size: 18px;\n  padding-bottom: 5px;\n}\n.nav__item:hover {\n  border-bottom: 3px solid #79A4E6;\n}\n.nav__cart {\n  display: inline-block;\n  float: right;\n  position: relative;\n  margin-top: 10px;\n  background: #fff;\n}\n.nav_cartItemNumber {\n  background: #010101;\n  color: #fff;\n  padding: 2px 10px;\n  border-radius: 999px;\n  position: absolute;\n  font-size: 12px;\n  right: -16px;\n  top: -10px;\n}\n.nav_cartContainer {\n  position: relative;\n}\n.nav__brand {\n  display: block;\n  margin: 20px auto;\n}\n.cart {\n  width: 230px;\n}\n.cart:last-child {\n  border: none;\n}\n.cart__item {\n  border-bottom: 1px solid #f2f2f2;\n  margin: 10px;\n}\n.cart__itemImg {\n  width: 50px;\n  float: left;\n}\n.cart__textOffset {\n  padding-left: 50px;\n}\n", ""]);
 
 	// exports
 
@@ -22150,7 +22163,7 @@
 /* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22166,10 +22179,15 @@
 	  var item = props.item;
 
 	  return React.createElement(
-	    'div',
-	    null,
-	    item.name,
-	    React.createElement(_ItemPrice2.default, { item: props.item })
+	    "div",
+	    { className: "cart__item" },
+	    React.createElement("img", { className: "cart__itemImg", src: '../../assets/' + item.imgPath, alt: "" }),
+	    React.createElement(
+	      "div",
+	      { className: "cart__textOffset" },
+	      item.name,
+	      React.createElement(_ItemPrice2.default, { item: props.item })
+	    )
 	  );
 	};
 
@@ -22198,19 +22216,21 @@
 	        "span",
 	        { className: "item__displayedPrice" },
 	        item.displayedPrice,
-	        " "
+	        "€"
 	      ),
 	      React.createElement(
 	        "span",
 	        { className: "item__newPrice" },
-	        item.originalPrice
+	        " ",
+	        item.originalPrice,
+	        "€"
 	      )
 	    ) : React.createElement(
 	      "p",
 	      { className: "item__price" },
 	      " ",
 	      item.originalPrice,
-	      " "
+	      "€ "
 	    )
 	  );
 	};
@@ -22248,11 +22268,6 @@
 	  return React.createElement(
 	    'div',
 	    { className: 'cart' },
-	    React.createElement(
-	      'h2',
-	      null,
-	      'Cart'
-	    ),
 	    props.cart.map(function (i) {
 	      return React.createElement(_CartItem2.default, { key: i.id, item: i });
 	    })

@@ -11,8 +11,14 @@ const ShoppingPage = (props) => {
   return (
     <div className="container">
       <div>
-        <img src="../../assets/vimcar-logo.svg" />
-        <img src="../../assets/cart.svg" />
+        <img src="../../assets/vimcar-logo.svg" className="nav__brand" />
+        <div className="nav_cartContainer">
+          <div className="nav__cart">
+            <img src="../../assets/cart.svg" />
+            <span className="nav_cartItemNumber">{props.rootReducer.cart.length}</span>
+          </div>
+          <Cart />
+        </div>
       </div>
       <div>
         <ul className="nav">
@@ -22,7 +28,6 @@ const ShoppingPage = (props) => {
           <li className="nav__item">More</li>
         </ul>
       </div>
-      <Cart />
       {items.map((i) => <Item key={i.id} item={i} />)}
     </div>
   );
