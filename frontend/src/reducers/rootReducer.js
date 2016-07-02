@@ -39,6 +39,8 @@ const initialState = {
 
 export default function rootReducer(state = initialState, action) {
   switch (action.type) {
+    case actions.ADD_ITEM_TO_CART:
+      return Object.assign({}, state, { cart: [...state.cart, action.item] })
     default:
       return state;
   }

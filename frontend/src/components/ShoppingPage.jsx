@@ -2,11 +2,12 @@ import Item from './Item';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/action.js'
 import { connect } from 'react-redux';
+import Cart from './Cart.jsx';
 
 
 const ShoppingPage = (props) => {
   const { rootReducer } = props;
-  const { items } = rootReducer;
+  const { items, cart } = rootReducer;
   return (
     <div className="container">
       <div>
@@ -21,7 +22,8 @@ const ShoppingPage = (props) => {
           <li>More</li>
         </ul>
       </div>
-      {items.map((i) => <Item key={i.id} item={i}/>)}
+      <Cart />
+      {items.map((i) => <Item key={i.id} item={i} />)}
     </div>
   );
 };

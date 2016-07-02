@@ -1,8 +1,17 @@
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as actions from '../actions/action.js'
+
 const Item = (props) => {
   const { item } = props;
+  
+  function handleClick() {
+    props.actions.addItemToCart(item);
+  }
+
   return (
     <div className="item">
-      <div className="item__imgContainer">
+      <div className="item__imgContainer" onClick={handleClick}>
         <div className="item__ctaContainer">
           <p className="item__cta">Add To cart</p>          
         </div>
@@ -30,4 +39,9 @@ const Item = (props) => {
   );
 };
 
-export default Item;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(actions, dispatch),
+  };
+}
+export default connect(null, mapDispatchToProps)(Item);

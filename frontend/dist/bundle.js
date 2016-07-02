@@ -71,76 +71,97 @@
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
+
+	var _reactRedux = __webpack_require__(161);
+
+	var _redux = __webpack_require__(168);
+
+	var _action = __webpack_require__(187);
+
+	var actions = _interopRequireWildcard(_action);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 	var Item = function Item(props) {
 	  var item = props.item;
 
+
+	  function handleClick() {
+	    props.actions.addItemToCart(item);
+	  }
+
 	  return React.createElement(
-	    "div",
-	    { className: "item" },
+	    'div',
+	    { className: 'item' },
 	    React.createElement(
-	      "div",
-	      { className: "item__imgContainer" },
+	      'div',
+	      { className: 'item__imgContainer', onClick: handleClick },
 	      React.createElement(
-	        "div",
-	        { className: "item__ctaContainer" },
+	        'div',
+	        { className: 'item__ctaContainer' },
 	        React.createElement(
-	          "p",
-	          { className: "item__cta" },
-	          "Add To cart"
+	          'p',
+	          { className: 'item__cta' },
+	          'Add To cart'
 	        )
 	      ),
-	      React.createElement("div", { className: "item__imgOverlay" }),
+	      React.createElement('div', { className: 'item__imgOverlay' }),
 	      item.isNew ? React.createElement(
-	        "div",
-	        { className: "item__highlightTag" },
-	        "New"
+	        'div',
+	        { className: 'item__highlightTag' },
+	        'New'
 	      ) : '',
 	      item.isOnSale ? React.createElement(
-	        "div",
-	        { className: "item__highlightTag" },
-	        "Sale"
+	        'div',
+	        { className: 'item__highlightTag' },
+	        'Sale'
 	      ) : '',
-	      React.createElement("img", { className: "item__img", src: '../../assets/' + item.imgPath, alt: "" })
+	      React.createElement('img', { className: 'item__img', src: '../../assets/' + item.imgPath, alt: '' })
 	    ),
 	    React.createElement(
-	      "div",
-	      { className: "item__description" },
+	      'div',
+	      { className: 'item__description' },
 	      React.createElement(
-	        "p",
+	        'p',
 	        null,
 	        item.name
 	      ),
 	      item.displayedPrice ? React.createElement(
-	        "p",
+	        'p',
 	        null,
 	        React.createElement(
-	          "span",
-	          { className: "item__displayedPrice" },
+	          'span',
+	          { className: 'item__displayedPrice' },
 	          item.displayedPrice,
-	          " "
+	          ' '
 	        ),
 	        React.createElement(
-	          "span",
-	          { className: "item__newPrice" },
+	          'span',
+	          { className: 'item__newPrice' },
 	          item.originalPrice
 	        )
 	      ) : React.createElement(
-	        "p",
-	        { className: "item__price" },
-	        " ",
+	        'p',
+	        { className: 'item__price' },
+	        ' ',
 	        item.originalPrice,
-	        " "
+	        ' '
 	      )
 	    )
 	  );
 	};
 
-	exports.default = Item;
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(actions, dispatch)
+	  };
+	}
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(Item);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
@@ -165,6 +186,10 @@
 
 	var _reactRedux = __webpack_require__(161);
 
+	var _Cart = __webpack_require__(195);
+
+	var _Cart2 = _interopRequireDefault(_Cart);
+
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -172,6 +197,7 @@
 	var ShoppingPage = function ShoppingPage(props) {
 	  var rootReducer = props.rootReducer;
 	  var items = rootReducer.items;
+	  var cart = rootReducer.cart;
 
 	  return React.createElement(
 	    'div',
@@ -210,6 +236,7 @@
 	        )
 	      )
 	    ),
+	    React.createElement(_Cart2.default, null),
 	    items.map(function (i) {
 	      return React.createElement(_Item2.default, { key: i.id, item: i });
 	    })
@@ -21721,6 +21748,8 @@
 
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 	var listOfItems = [{
 	  id: 1,
 	  name: '42 mm Space Gray Aluminium Case with Black Woven Nylon',
@@ -21757,6 +21786,8 @@
 	  var action = arguments[1];
 
 	  switch (action.type) {
+	    case actions.ADD_ITEM_TO_CART:
+	      return Object.assign({}, state, { cart: [].concat(_toConsumableArray(state.cart), [action.item]) });
 	    default:
 	      return state;
 	  }
@@ -21766,7 +21797,19 @@
 /* 187 */
 /***/ function(module, exports) {
 
-	"use strict";
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.addItemToCart = addItemToCart;
+	var ADD_ITEM_TO_CART = exports.ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
+	function addItemToCart(item) {
+	  return {
+	    type: ADD_ITEM_TO_CART,
+	    item: item
+	  };
+	}
 
 /***/ },
 /* 188 */
@@ -21803,7 +21846,7 @@
 
 
 	// module
-	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n", ""]);
+	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n", ""]);
 
 	// exports
 
@@ -22115,6 +22158,135 @@
 			URL.revokeObjectURL(oldSrc);
 	}
 
+
+/***/ },
+/* 192 */,
+/* 193 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _ItemPrice = __webpack_require__(194);
+
+	var _ItemPrice2 = _interopRequireDefault(_ItemPrice);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var CartItem = function CartItem(props) {
+	  var item = props.item;
+
+	  return React.createElement(
+	    'div',
+	    null,
+	    item.name,
+	    React.createElement(_ItemPrice2.default, { item: props.item })
+	  );
+	};
+
+	exports.default = CartItem;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 194 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	var ItemPrice = function ItemPrice(props) {
+	  var item = props.item;
+
+	  return React.createElement(
+	    "div",
+	    null,
+	    item.displayedPrice ? React.createElement(
+	      "p",
+	      null,
+	      React.createElement(
+	        "span",
+	        { className: "item__displayedPrice" },
+	        item.displayedPrice,
+	        " "
+	      ),
+	      React.createElement(
+	        "span",
+	        { className: "item__newPrice" },
+	        item.originalPrice
+	      )
+	    ) : React.createElement(
+	      "p",
+	      { className: "item__price" },
+	      " ",
+	      item.originalPrice,
+	      " "
+	    )
+	  );
+	};
+
+	exports.default = ItemPrice;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ },
+/* 195 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _reactRedux = __webpack_require__(161);
+
+	var _redux = __webpack_require__(168);
+
+	var _CartItem = __webpack_require__(193);
+
+	var _CartItem2 = _interopRequireDefault(_CartItem);
+
+	var _action = __webpack_require__(187);
+
+	var actions = _interopRequireWildcard(_action);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var Cart = function Cart(props) {
+	  return React.createElement(
+	    'div',
+	    { className: 'cart' },
+	    React.createElement(
+	      'h2',
+	      null,
+	      'Cart'
+	    ),
+	    props.cart.map(function (i) {
+	      return React.createElement(_CartItem2.default, { key: i.id, item: i });
+	    })
+	  );
+	};
+
+	function mapStateToProps(state) {
+	  return {
+	    cart: state.cart
+	  };
+	}
+
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(actions, dispatch)
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(Cart);
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }
 /******/ ]);
