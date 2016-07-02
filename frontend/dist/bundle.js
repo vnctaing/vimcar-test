@@ -21787,6 +21787,10 @@
 	  switch (action.type) {
 	    case actions.ADD_ITEM_TO_CART:
 	      return Object.assign({}, state, { cart: [].concat(_toConsumableArray(state.cart), [action.item]) });
+
+	    case actions.REMOVE_ITEM_FROM_CART:
+	      return Object.assign({}, state, { cart: [].concat(_toConsumableArray(state.cart.slice(0, action.index)), _toConsumableArray(state.cart.slice(action.index + 1)))
+	      });
 	    default:
 	      return state;
 	  }
@@ -21802,11 +21806,20 @@
 	  value: true
 	});
 	exports.addItemToCart = addItemToCart;
+	exports.removeItemFromCart = removeItemFromCart;
 	var ADD_ITEM_TO_CART = exports.ADD_ITEM_TO_CART = 'ADD_ITEM_TO_CART';
 	function addItemToCart(item) {
 	  return {
 	    type: ADD_ITEM_TO_CART,
 	    item: item
+	  };
+	}
+
+	var REMOVE_ITEM_FROM_CART = exports.REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
+	function removeItemFromCart(index) {
+	  return {
+	    type: REMOVE_ITEM_FROM_CART,
+	    index: index
 	  };
 	}
 
@@ -21845,7 +21858,7 @@
 
 
 	// module
-	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n  position: absolute;\n  right: 0;\n  top: 36px;\n  z-index: 9999;\n  background: #fff;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  position: relative;\n}\n.nav {\n  list-style-type: none;\n  margin: 60px auto 100px;\n  display: flex;\n  justify-content: center;\n  height: 30px;\n}\n.nav__item {\n  display: inline;\n  margin: 0 40px;\n  font-size: 18px;\n  padding-bottom: 5px;\n}\n.nav__item:hover {\n  border-bottom: 3px solid #79A4E6;\n}\n.nav__cart {\n  display: inline-block;\n  float: right;\n  position: relative;\n  margin-top: 10px;\n  background: #fff;\n}\n.nav_cartItemNumber {\n  background: #010101;\n  color: #fff;\n  padding: 2px 10px;\n  border-radius: 999px;\n  position: absolute;\n  font-size: 12px;\n  right: -16px;\n  top: -10px;\n}\n.nav_cartContainer {\n  position: relative;\n}\n.nav__brand {\n  display: block;\n  margin: 20px auto;\n}\n.cart {\n  width: 230px;\n}\n.cart:last-child {\n  border: none;\n}\n.cart__item {\n  border-bottom: 1px solid #f2f2f2;\n  margin: 10px;\n}\n.cart__itemImg {\n  width: 50px;\n  float: left;\n}\n.cart__textOffset {\n  padding-left: 50px;\n}\n", ""]);
+	exports.push([module.id, ".body {\n  font-family: 'Helvetica';\n}\n.item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n  position: absolute;\n  right: 0;\n  top: 36px;\n  z-index: 9999;\n  background: #fff;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n  position: relative;\n}\n.nav {\n  list-style-type: none;\n  margin: 60px auto 100px;\n  display: flex;\n  justify-content: center;\n  height: 30px;\n}\n.nav__item {\n  display: inline;\n  margin: 0 40px;\n  font-size: 18px;\n  padding-bottom: 5px;\n}\n.nav__item:hover {\n  border-bottom: 3px solid #79A4E6;\n}\n.nav__cart {\n  display: inline-block;\n  float: right;\n  position: relative;\n  margin-top: 10px;\n  background: #fff;\n}\n.nav_cartItemNumber {\n  background: #010101;\n  color: #fff;\n  padding: 2px 10px;\n  border-radius: 999px;\n  position: absolute;\n  font-size: 12px;\n  right: -16px;\n  top: -10px;\n}\n.nav_cartContainer {\n  position: relative;\n}\n.nav__brand {\n  display: block;\n  margin: 20px auto;\n}\n.cart {\n  width: 230px;\n}\n.cart:last-child {\n  border: none;\n}\n.cart__item {\n  border-bottom: 1px solid #f2f2f2;\n  margin: 10px;\n}\n.cart__itemImg {\n  width: 50px;\n  float: left;\n}\n.cart__textOffset {\n  padding-left: 50px;\n}\n.cart__removeCta {\n  background: #010101;\n  color: #fff;\n  padding: 5px 10px;\n  right: 0;\n  display: block;\n  margin: 0 auto 10px;\n}\n", ""]);
 
 	// exports
 
@@ -22163,7 +22176,7 @@
 /* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(React) {"use strict";
+	/* WEBPACK VAR INJECTION */(function(React) {'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
@@ -22173,25 +22186,51 @@
 
 	var _ItemPrice2 = _interopRequireDefault(_ItemPrice);
 
+	var _reactRedux = __webpack_require__(161);
+
+	var _redux = __webpack_require__(168);
+
+	var _action = __webpack_require__(187);
+
+	var actions = _interopRequireWildcard(_action);
+
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var CartItem = function CartItem(props) {
+
+	  function handleClick() {
+	    props.actions.removeItemFromCart(props.index);
+	  }
+
 	  var item = props.item;
 
 	  return React.createElement(
-	    "div",
-	    { className: "cart__item" },
-	    React.createElement("img", { className: "cart__itemImg", src: '../../assets/' + item.imgPath, alt: "" }),
+	    'div',
+	    { className: 'cart__item' },
+	    React.createElement('img', { className: 'cart__itemImg', src: '../../assets/' + item.imgPath, alt: '' }),
 	    React.createElement(
-	      "div",
-	      { className: "cart__textOffset" },
+	      'div',
+	      { className: 'cart__textOffset' },
 	      item.name,
 	      React.createElement(_ItemPrice2.default, { item: props.item })
+	    ),
+	    React.createElement(
+	      'button',
+	      { type: 'button', className: 'cart__removeCta', onClick: handleClick },
+	      'Remove from cart'
 	    )
 	  );
 	};
 
-	exports.default = CartItem;
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    actions: (0, _redux.bindActionCreators)(actions, dispatch)
+	  };
+	}
+
+	exports.default = (0, _reactRedux.connect)(null, mapDispatchToProps)(CartItem);
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ },
@@ -22268,8 +22307,8 @@
 	  return React.createElement(
 	    'div',
 	    { className: 'cart' },
-	    props.cart.map(function (i) {
-	      return React.createElement(_CartItem2.default, { key: i.id, item: i });
+	    props.cart.map(function (item, index) {
+	      return React.createElement(_CartItem2.default, { key: item.id, actions: actions, item: item, index: index });
 	    })
 	  );
 	};

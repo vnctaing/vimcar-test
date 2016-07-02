@@ -41,6 +41,16 @@ export default function rootReducer(state = initialState, action) {
   switch (action.type) {
     case actions.ADD_ITEM_TO_CART:
       return Object.assign({}, state, { cart: [...state.cart, action.item] })
+
+    case actions.REMOVE_ITEM_FROM_CART:
+      return Object.assign({}, 
+        state, 
+        { cart : 
+          [
+            ...state.cart.slice(0, action.index),
+            ...state.cart.slice(action.index + 1)
+          ]
+        });
     default:
       return state;
   }

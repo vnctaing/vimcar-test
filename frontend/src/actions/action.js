@@ -5,3 +5,11 @@ export function addItemToCart(item) {
     item,
   };
 }
+
+export const REMOVE_ITEM_FROM_CART = 'REMOVE_ITEM_FROM_CART';
+export function removeItemFromCart(index) {
+  return {
+    type: REMOVE_ITEM_FROM_CART,
+    index,
+  }
+}

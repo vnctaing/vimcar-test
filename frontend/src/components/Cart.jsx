@@ -7,7 +7,7 @@ import * as actions from '../actions/action.js'
 const Cart = (props) => {
   return (
     <div className="cart">
-      {props.cart.map((i) => <CartItem key={i.id} item={i} />)}
+      {props.cart.map((item, index) => <CartItem key={item.id} actions={actions} item={item} index={index} />)}
     </div>
   );
 }
