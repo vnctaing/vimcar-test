@@ -8,7 +8,19 @@ const ShoppingPage = (props) => {
   const { rootReducer } = props;
   const { items } = rootReducer;
   return (
-    <div>
+    <div className="container">
+      <div>
+        <img src="../../assets/vimcar-logo.svg" />
+        <img src="../../assets/cart.svg" />
+      </div>
+      <div>
+        <ul>
+          <li>Shop</li>
+          <li>Journal</li>
+          <li>About</li>
+          <li>More</li>
+        </ul>
+      </div>
       {items.map((i) => <Item key={i.id} item={i}/>)}
     </div>
   );

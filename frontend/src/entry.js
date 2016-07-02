@@ -1,3 +1,5 @@
+require('../assets/style.less')
+
 import { Provider } from 'react-redux';
 import ShoppingPage from './components/ShoppingPage';
 import store from './store/store.js';
