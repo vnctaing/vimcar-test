@@ -82,21 +82,60 @@
 	  return React.createElement(
 	    "div",
 	    { className: "item" },
-	    React.createElement("img", { src: '../../assets/' + item.imgPath, alt: "" }),
 	    React.createElement(
 	      "div",
-	      null,
-	      item.id
+	      { className: "item__imgContainer" },
+	      React.createElement(
+	        "div",
+	        { className: "item__ctaContainer" },
+	        React.createElement(
+	          "p",
+	          { className: "item__cta" },
+	          "Add To cart"
+	        )
+	      ),
+	      React.createElement("div", { className: "item__imgOverlay" }),
+	      item.isNew ? React.createElement(
+	        "div",
+	        { className: "item__highlightTag" },
+	        "New"
+	      ) : '',
+	      item.isOnSale ? React.createElement(
+	        "div",
+	        { className: "item__highlightTag" },
+	        "Sale"
+	      ) : '',
+	      React.createElement("img", { className: "item__img", src: '../../assets/' + item.imgPath, alt: "" })
 	    ),
 	    React.createElement(
-	      "p",
-	      null,
-	      item.name
-	    ),
-	    React.createElement(
-	      "p",
-	      null,
-	      item.price
+	      "div",
+	      { className: "item__description" },
+	      React.createElement(
+	        "p",
+	        null,
+	        item.name
+	      ),
+	      item.displayedPrice ? React.createElement(
+	        "p",
+	        null,
+	        React.createElement(
+	          "span",
+	          { className: "item__displayedPrice" },
+	          item.displayedPrice,
+	          " "
+	        ),
+	        React.createElement(
+	          "span",
+	          { className: "item__newPrice" },
+	          item.originalPrice
+	        )
+	      ) : React.createElement(
+	        "p",
+	        { className: "item__price" },
+	        " ",
+	        item.originalPrice,
+	        " "
+	      )
 	    )
 	  );
 	};
@@ -21685,23 +21724,27 @@
 	var listOfItems = [{
 	  id: 1,
 	  name: '42 mm Space Gray Aluminium Case with Black Woven Nylon',
-	  price: 249.99,
+	  originalPrice: 249.99,
 	  imgPath: 'h38ss-dtbl-sel-201603.png'
 	}, {
 	  id: 2,
 	  name: '42 mm Space Gray Aluminium Case with Black Woven Nylon',
-	  price: 249.99,
+	  originalPrice: 249.99,
 	  imgPath: 'h38ss-dtbl-sel-201603.png'
 	}, {
 	  id: 3,
 	  name: '42 mm Space Gray Aluminium Case with Black Woven Nylon',
-	  price: 249.99,
-	  imgPath: 'h38ss-dtbl-sel-201603.png'
+	  originalPrice: 249.99,
+	  imgPath: 'h38ss-dtbl-sel-201603.png',
+	  displayedPrice: 209.99,
+	  isNew: true
 	}, {
 	  id: 4,
 	  name: '42 mm Space Gray Aluminium Case with Black Woven Nylon',
-	  price: 249.99,
-	  imgPath: 'h38ss-dtbl-sel-201603.png'
+	  originalPrice: 249.99,
+	  imgPath: 'h38ss-dtbl-sel-201603.png',
+	  isOnSale: true,
+	  displayedPrice: 205.99
 	}];
 
 	var initialState = {
@@ -21760,7 +21803,7 @@
 
 
 	// module
-	exports.push([module.id, ".item {\n  background: red;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n", ""]);
+	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n", ""]);
 
 	// exports
 
