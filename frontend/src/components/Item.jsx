@@ -1,9 +1,10 @@
 const Item = (props) => {
+  const { item } = props;
   return (
     <div>
-      <div>{props.id}</div>
-      <p>{props.name}</p>
-      <p>{props.price}</p>
+      <div>{item.id}</div>
+      <p>{item.name}</p>
+      <p>{item.price}</p>
     </div>
   );
 };

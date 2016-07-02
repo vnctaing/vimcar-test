@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 
 
 const ShoppingPage = (props) => {
+  const { rootReducer } = props;
+  const { items } = rootReducer;
   return (
     <div>
-      hello
+      {items.map((i) => <Item key={i.id} item={i}/>)}
     </div>
   );
 };
@@ -20,7 +22,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-     actions: bindActionCreators(actions, dispatch),
+    actions: bindActionCreators(actions, dispatch),
   };
 }
 

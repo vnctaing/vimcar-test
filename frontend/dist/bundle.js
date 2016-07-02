@@ -75,23 +75,25 @@
 	  value: true
 	});
 	var Item = function Item(props) {
+	  var item = props.item;
+
 	  return React.createElement(
 	    "div",
 	    null,
 	    React.createElement(
 	      "div",
 	      null,
-	      props.id
+	      item.id
 	    ),
 	    React.createElement(
 	      "p",
 	      null,
-	      props.name
+	      item.name
 	    ),
 	    React.createElement(
 	      "p",
 	      null,
-	      props.price
+	      item.price
 	    )
 	  );
 	};
@@ -126,10 +128,15 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var ShoppingPage = function ShoppingPage(props) {
+	  var rootReducer = props.rootReducer;
+	  var items = rootReducer.items;
+
 	  return React.createElement(
 	    'div',
 	    null,
-	    'hello'
+	    items.map(function (i) {
+	      return React.createElement(_Item2.default, { key: i.id, item: i });
+	    })
 	  );
 	};
 
