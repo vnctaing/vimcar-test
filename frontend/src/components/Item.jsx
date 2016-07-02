@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as actions from '../actions/action.js'
+import ItemPrice from './ItemPrice.jsx';
 
 const Item = (props) => {
   const { item } = props;
@@ -27,13 +28,7 @@ const Item = (props) => {
       </div>
       <div className="item__description">
         <p>{item.name}</p>
-        {item.displayedPrice 
-          ? <p>
-              <span className="item__displayedPrice">{item.displayedPrice} </span>
-              <span className="item__newPrice">{item.originalPrice}</span>
-            </p>
-          : <p className="item__price"> {item.originalPrice} </p>
-        }
+        <ItemPrice item={item} />
       </div>
     </div>
   );

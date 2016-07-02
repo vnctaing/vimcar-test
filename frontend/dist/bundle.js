@@ -85,6 +85,12 @@
 
 	var actions = _interopRequireWildcard(_action);
 
+	var _ItemPrice = __webpack_require__(194);
+
+	var _ItemPrice2 = _interopRequireDefault(_ItemPrice);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 	var Item = function Item(props) {
@@ -131,27 +137,7 @@
 	        null,
 	        item.name
 	      ),
-	      item.displayedPrice ? React.createElement(
-	        'p',
-	        null,
-	        React.createElement(
-	          'span',
-	          { className: 'item__displayedPrice' },
-	          item.displayedPrice,
-	          ' '
-	        ),
-	        React.createElement(
-	          'span',
-	          { className: 'item__newPrice' },
-	          item.originalPrice
-	        )
-	      ) : React.createElement(
-	        'p',
-	        { className: 'item__price' },
-	        ' ',
-	        item.originalPrice,
-	        ' '
-	      )
+	      React.createElement(_ItemPrice2.default, { item: item })
 	    )
 	  );
 	};
@@ -213,25 +199,25 @@
 	      null,
 	      React.createElement(
 	        'ul',
-	        null,
+	        { className: 'nav' },
 	        React.createElement(
 	          'li',
-	          null,
+	          { className: 'nav__item' },
 	          'Shop'
 	        ),
 	        React.createElement(
 	          'li',
-	          null,
+	          { className: 'nav__item' },
 	          'Journal'
 	        ),
 	        React.createElement(
 	          'li',
-	          null,
+	          { className: 'nav__item' },
 	          'About'
 	        ),
 	        React.createElement(
 	          'li',
-	          null,
+	          { className: 'nav__item' },
 	          'More'
 	        )
 	      )
@@ -21846,7 +21832,7 @@
 
 
 	// module
-	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n", ""]);
+	exports.push([module.id, ".item {\n  width: 250px;\n  display: inline-block;\n  margin: 10px;\n}\n.item__imgContainer {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  position: relative;\n  cursor: pointer;\n}\n.item__imgContainer:hover .item__imgOverlay {\n  background: #fff;\n  opacity: 0.5;\n  height: 183px;\n  position: absolute;\n  width: 100%;\n}\n.item__imgContainer:hover .item__ctaContainer {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  position: absolute;\n  z-index: 999;\n  width: 100%;\n  height: 100%;\n}\n.item__ctaContainer {\n  display: none;\n}\n.item__img {\n  margin: 0 auto;\n  display: block;\n}\n.item__cta {\n  border: 3px solid black;\n  padding: 10px 35px;\n}\n.item__description {\n  text-align: center;\n}\n.item__price {\n  color: #96bdee;\n}\n.item__highlightTag {\n  color: #fff;\n  background: red;\n  position: absolute;\n  top: 5px;\n  left: 5px;\n  padding: 5px 15px;\n  text-transform: uppercase;\n}\n.item__displayedPrice {\n  text-decoration: line-through;\n  color: #AAA;\n}\n.item__newPrice {\n  color: #e94257;\n}\n.cart {\n  box-shadow: 0px 0px 30px 1px rgba(0, 0, 0, 0.1);\n  width: 200px;\n}\n.container {\n  width: 80%;\n  padding-right: 15px;\n  padding-left: 15px;\n  margin-right: auto;\n  margin-left: auto;\n}\n.nav {\n  list-style-type: none;\n  margin: 0 auto;\n  display: flex;\n  justify-content: center;\n  height: 30px;\n}\n.nav__item {\n  display: inline;\n  margin: 0 40px;\n  font-size: 18px;\n  padding-bottom: 5px;\n}\n.nav__item:hover {\n  border-bottom: 3px solid #79A4E6;\n}\n", ""]);
 
 	// exports
 

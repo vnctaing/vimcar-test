@@ -15,11 +15,11 @@ const ShoppingPage = (props) => {
         <img src="../../assets/cart.svg" />
       </div>
       <div>
-        <ul>
-          <li>Shop</li>
-          <li>Journal</li>
-          <li>About</li>
-          <li>More</li>
+        <ul className="nav">
+          <li className="nav__item">Shop</li>
+          <li className="nav__item">Journal</li>
+          <li className="nav__item">About</li>
+          <li className="nav__item">More</li>
         </ul>
       </div>
       <Cart />
